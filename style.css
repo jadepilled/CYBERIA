@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "VCR OSD Mono";
+  src: url("fonts/VCR_OSD_MONO_1.001.ttf") format("truetype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
 :root {
   --bg: #2a1d14;
   --panel: #33251a;
@@ -16,7 +21,9 @@
 
   --head: "Pixelify Sans", "Silkscreen", ui-monospace, monospace;
   --pix: "Silkscreen", "Pixelify Sans", ui-monospace, monospace;
-  --body: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --body: "VT323", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --vcr: "VCR OSD Mono", "Silkscreen", ui-monospace, monospace;
+  --grid: #3d2c1f;
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --nav-h: 56px;
@@ -29,12 +36,17 @@
 html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 
 body {
-  background: var(--bg);
+  background:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    var(--bg);
+  background-size: 48px 48px, 48px 48px, auto;
+  background-position: center top;
   color: var(--text);
   font-family: var(--body);
   font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.65;
+  font-size: 1.3rem;
+  line-height: 1.45;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -44,8 +56,8 @@ a { color: inherit; }
 ::selection { background: var(--accent); color: var(--bg); }
 
 /* Logo / wordmark */
-.logo, .wordmark { font-family: var(--pix); font-weight: 700; color: var(--white); text-decoration: none; line-height: 1; }
-.logo { font-size: 1.05rem; }
+.logo, .wordmark { font-family: var(--vcr); font-weight: 400; color: var(--white); text-decoration: none; line-height: 1; }
+.logo { font-size: 1.25rem; }
 
 /* Nav */
 .nav {
@@ -112,15 +124,11 @@ a { color: inherit; }
   align-items: center;
   text-align: center;
   padding-bottom: 4rem;
-  background:
-    radial-gradient(ellipse at 50% 60%, rgba(227, 207, 168, 0.09), transparent 60%),
-    linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: auto, 48px 48px, 48px 48px;
-  background-position: center;
+  background: radial-gradient(ellipse at 50% 60%, rgba(227, 207, 168, 0.09), transparent 60%);
   box-shadow: inset 0 0 160px rgba(0, 0, 0, 0.45);
 }
 .wordmark {
-  font-size: clamp(2.6rem, min(12vw, 18vh), 9rem);
+  font-size: clamp(3rem, min(13vw, 20vh), 10rem);
   line-height: 1;
 }
 .wordmark .cy { letter-spacing: 0.22em; margin-right: -0.22em; }
@@ -168,7 +176,7 @@ h3 {
   color: var(--white);
   margin-bottom: 0.5rem;
 }
-.lead { font-size: clamp(1.05rem, 2.2vw, 1.3rem); max-width: 44ch; }
+.lead { font-size: clamp(1.35rem, 2.6vw, 1.7rem); max-width: 44ch; }
 .muted { color: var(--muted); }
 
 /* Features */
@@ -181,7 +189,7 @@ h3 {
   box-shadow: 4px 4px 0 var(--line-hi);
 }
 .grid article { background: var(--bg); padding: 1.6rem; }
-.grid p { color: var(--text); font-size: 0.92rem; }
+.grid p { color: var(--text); font-size: 1.2rem; }
 
 kbd {
   font-family: var(--pix);
@@ -211,12 +219,12 @@ kbd {
 }
 .pill::before { content: ""; width: 8px; height: 8px; background: var(--muted); }
 .pill.on { color: var(--white); }
-.pill-age { display: block; margin-top: 0.3rem; text-align: right; font-size: 0.72rem; color: var(--muted); }
+.pill-age { display: block; margin-top: 0.3rem; text-align: right; font-size: 0.95rem; color: var(--muted); }
 .pill.on::before { background: var(--ok); box-shadow: 0 0 0 2px rgba(156, 207, 110, 0.25); }
 .srv-pop b { font-family: var(--head); font-weight: 700; font-size: 2.4rem; line-height: 1; color: var(--white); }
 .srv-pop b small { font-size: 1rem; color: var(--grey); font-weight: 700; }
 .chart-head { display: flex; justify-content: space-between; align-items: center; color: var(--grey); font-family: var(--pix); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; min-height: 1.6rem; }
-.chart-head .live { color: var(--white); font-family: var(--body); text-transform: none; letter-spacing: 0; font-size: 0.85rem; }
+.chart-head .live { color: var(--white); font-family: var(--body); text-transform: none; letter-spacing: 0; font-size: 1.1rem; }
 .range { display: flex; gap: 2px; }
 .range button {
   font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--grey);
@@ -225,7 +233,7 @@ kbd {
 .range button[aria-pressed="true"] { color: var(--white); border-color: var(--line-hi); }
 .chart { position: relative; height: 72px; touch-action: pan-y; }
 .chart svg { display: block; width: 100%; height: 100%; overflow: visible; }
-.chart-empty { height: 72px; display: grid; place-items: center; color: var(--muted); font-size: 0.85rem; border: 1px dashed var(--line-hi); }
+.chart-empty { height: 72px; display: grid; place-items: center; color: var(--muted); font-size: 1.1rem; border: 1px dashed var(--line-hi); }
 .addr { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 1rem; }
 .addr code { font-family: var(--mono); font-size: 0.95rem; color: var(--white); }
 .copy {
@@ -250,7 +258,7 @@ kbd {
   padding: 1.5rem var(--gutter);
   border-top: 2px solid var(--line);
   color: var(--grey);
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   text-align: left;
 }
 .play footer .logo { font-size: 0.9rem; }
@@ -268,7 +276,7 @@ kbd {
 
 /* CYBERIA wordmark: copper to cream, with a quick prismatic sweep now and then */
 .cy {
-  position: relative; display: inline-block; font-family: var(--pix); font-weight: 700; letter-spacing: 0.16em; text-indent: 0;
+  position: relative; display: inline-block; font-family: var(--vcr); font-weight: 400; letter-spacing: 0.18em; text-indent: 0;
   background: linear-gradient(90deg, var(--copper) 0%, #d9a773 38%, var(--accent-hi) 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
