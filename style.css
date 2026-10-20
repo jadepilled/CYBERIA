@@ -19,7 +19,7 @@
   --chart: #e3cfa8;
   --ok: #9ccf6e;
 
-  --head: "Pixelify Sans", "Silkscreen", ui-monospace, monospace;
+  --head: "VT323", "IBM Plex Mono", ui-monospace, monospace;
   --pix: "Silkscreen", "Pixelify Sans", ui-monospace, monospace;
   --body: "VT323", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --vcr: "VCR OSD Mono", "Silkscreen", ui-monospace, monospace;
@@ -154,8 +154,10 @@ a { color: inherit; }
 
 h2 {
   font-family: var(--head);
-  font-weight: 700;
-  font-size: clamp(2.2rem, 6vw, 3.8rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: clamp(2.6rem, 6.5vw, 4.4rem);
   line-height: 1;
   color: var(--white);
   margin-bottom: 2rem;
@@ -171,8 +173,10 @@ h2::after {
 }
 h3 {
   font-family: var(--head);
-  font-weight: 700;
-  font-size: 1.3rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 1.5rem;
   color: var(--white);
   margin-bottom: 0.5rem;
 }
@@ -211,7 +215,7 @@ kbd {
 }
 .srv { background: var(--bg); padding: 1.5rem 1.75rem; display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
 .srv-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-.srv-map { font-family: var(--head); font-weight: 700; font-size: 1.6rem; line-height: 1; color: var(--white); }
+.srv-map { font-family: var(--head); font-weight: 400; text-transform: uppercase; letter-spacing: 0.06em; font-size: 2rem; line-height: 1; color: var(--white); }
 .pill {
   display: inline-flex; align-items: center; gap: 0.45em;
   font-family: var(--pix); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
@@ -221,8 +225,8 @@ kbd {
 .pill.on { color: var(--white); }
 .pill-age { display: block; margin-top: 0.3rem; text-align: right; font-size: 0.95rem; color: var(--muted); }
 .pill.on::before { background: var(--ok); box-shadow: 0 0 0 2px rgba(156, 207, 110, 0.25); }
-.srv-pop b { font-family: var(--head); font-weight: 700; font-size: 2.4rem; line-height: 1; color: var(--white); }
-.srv-pop b small { font-size: 1rem; color: var(--grey); font-weight: 700; }
+.srv-pop b { font-family: var(--head); font-weight: 400; font-size: 3rem; line-height: 1; color: var(--white); }
+.srv-pop b small { font-size: 1.3rem; color: var(--grey); }
 .chart-head { display: flex; justify-content: space-between; align-items: center; color: var(--grey); font-family: var(--pix); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; min-height: 1.6rem; }
 .chart-head .live { color: var(--white); font-family: var(--body); text-transform: none; letter-spacing: 0; font-size: 1.1rem; }
 .range { display: flex; gap: 2px; }
