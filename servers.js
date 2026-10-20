@@ -46,8 +46,8 @@
     const y = (v) => H - (v / top) * (H - 6);
     const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": `Player count, last ${range}` });
 
-    svg.append(svgEl("line", { x1: 0, x2: W, y1: H - 0.5, y2: H - 0.5, stroke: "#4a3729", "stroke-width": 1 }));
-    svg.append(svgEl("line", { x1: 0, x2: W, y1: y(top) + 0.5, y2: y(top) + 0.5, stroke: "#3d2d20", "stroke-width": 1 }));
+    svg.append(svgEl("line", { x1: 0, x2: W, y1: H - 0.5, y2: H - 0.5, stroke: "#3a2a1e", "stroke-width": 1 }));
+    svg.append(svgEl("line", { x1: 0, x2: W, y1: y(top) + 0.5, y2: y(top) + 0.5, stroke: "#2a1d15", "stroke-width": 1 }));
     const yl = svgEl("text", { x: 0, y: y(top) - 4, fill: "#8a7458", "font-size": 10 });
     yl.textContent = top;
     svg.append(yl);
@@ -67,12 +67,12 @@
     }
     const last = pts[pts.length - 1];
     if (last[1] != null) {
-      svg.append(svgEl("circle", { cx: x(last[0]), cy: y(last[1]), r: 4, fill: "var(--chart)", stroke: "#2a1d14", "stroke-width": 2 }));
+      svg.append(svgEl("circle", { cx: x(last[0]), cy: y(last[1]), r: 4, fill: "var(--chart)", stroke: "#181009", "stroke-width": 2 }));
     }
 
     // hover: crosshair + tooltip on the nearest sample
-    const cross = svgEl("line", { y1: 0, y2: H, stroke: "#6a5140", "stroke-width": 1, visibility: "hidden" });
-    const dot = svgEl("circle", { r: 4, fill: "var(--chart)", stroke: "#2a1d14", "stroke-width": 2, visibility: "hidden" });
+    const cross = svgEl("line", { y1: 0, y2: H, stroke: "#574131", "stroke-width": 1, visibility: "hidden" });
+    const dot = svgEl("circle", { r: 4, fill: "var(--chart)", stroke: "#181009", "stroke-width": 2, visibility: "hidden" });
     svg.append(cross, dot);
     box.append(svg);
     const hide = () => { cross.setAttribute("visibility", "hidden"); dot.setAttribute("visibility", "hidden"); readout(null); };
