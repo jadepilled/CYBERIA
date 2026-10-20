@@ -13,12 +13,16 @@
   <link rel="stylesheet" href="style.css">
   <script src="servers.js" defer></script>
   <script src="pages.js" defer></script>
+  <script src="light.js" defer></script>
+  <script src="countdown.js" defer></script>
 </head>
 <body>
 
   <header class="nav">
-    <a href="#top" class="logo" aria-label="CYBERIA home"><span class="cy" data-text="CYBERIA">CYBERIA</span></a>
+    <a href="#top" class="logo" aria-label="CYBERIA home"><span class="cy" data-text="CYBERIA" data-light>CYBERIA</span></a>
+    <a class="count" href="#play" hidden><span>Release</span><time id="countdown" datetime="2026-11-01T07:00:00Z">--</time></a>
     <nav aria-label="Main">
+      <a href="#trailer">Trailer</a>
       <a href="#servers">Servers</a>
       <a href="#features">Features</a>
       <a href="https://wiki.cyberia.gg">Wiki</a>
@@ -31,8 +35,16 @@
   <main>
 
     <section id="top" class="page hero">
-      <h1 class="wordmark"><span class="cy" data-text="CYBERIA">CYBERIA</span></h1>
-      <p class="tags">Futuristic hardcore survival <span>experiment</span></p>
+      <h1 class="wordmark"><span class="cy" data-text="CYBERIA" data-light>CYBERIA</span></h1>
+      <p class="tags" data-text="Futuristic hardcore survival experiment" data-light>Futuristic hardcore survival <span>experiment</span></p>
+      <a href="#trailer" class="scroll" aria-label="Next page"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
+    </section>
+
+    <section id="trailer" class="page">
+      <div class="inner">
+        <h2>Trailer</h2>
+        <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0" title="CYBERIA trailer" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+      </div>
       <a href="#servers" class="scroll" aria-label="Next page"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
     </section>
 
@@ -43,6 +55,7 @@
           <noscript><p class="muted">Enable JavaScript to see live server status.</p></noscript>
         </div>
       </div>
+      <a href="#features" class="scroll" aria-label="Next page"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
     </section>
 
     <section id="features" class="page">
@@ -50,39 +63,40 @@
         <h2>Features</h2>
         <div class="grid">
           <article>
-            <h3>PvP</h3>
-            <p>Our unique, fast-paced gunplay system blends modern shooter mechanics with fluid movement to deliver an unforgettable experience.</p>
+            <h3>Immersive World</h3>
+            <p>CYBERIA takes place in an alternative timeline set in the late 90s, with clothing, items, lore, and weapons to match. Experience the future today, exactly how it was dreamed in the past.</p>
           </article>
           <article>
             <h3>Flight System</h3>
-            <p>Custom flight system based on real flight simulation, with 4 helicopters and 3 planes spawning in fitting locations throughout our maps.</p>
+            <p>Custom flight system utilising DayZ's physics engine to produce realistic simulation, with 30+ helicopters, planes, biplanes, and the legendary MV-22.</p>
+          </article>
+          <article>
+            <h3>CYBERIA Weapons</h3>
+            <p>Lasers, plasma bolt guns, disk launchers, flamethrowers, electrical weapons, the list goes on. 49+ retrofuturistic weapons made in-house; all CYBERIA exclusive.</p>
+          </article>
+          <article>
+            <h3>Character Lab</h3>
+            <p>A full custom character system allows players to configure hair, eye, brow, and beard colours, as well as select from various hair and beard styles.</p>
+          </article>
+          <article>
+            <h3>No HUD + Custom UI</h3>
+            <p>Our servers ship no HUD. An in-game Status Monitor becomes your stat readout: check it by holding <kbd>H</kbd>. Our sleek, minimal UI streamlines your survival and stays out of the way when it counts.</p>
           </article>
           <article>
             <h3>Dynamic Events</h3>
-            <p>Dynamic crashes, infected hoardes, and keycard missions. Get lost in immersive events that seamlessly integrate with the game.</p>
-          </article>
-          <article>
-            <h3>No HUD</h3>
-            <p>We prioritise immersion, with a modified extremely minimal HUD. An in-game Status Monitor becomes your stat readout: check it by holding <kbd>H</kbd>.</p>
-          </article>
-          <article>
-            <h3>Custom UI</h3>
-            <p>Sleek, minimal UI that simplifies the experience and makes your gameplay better when it counts. Easy to read and out of the way when you don't need it.</p>
-          </article>
-          <article>
-            <h3>Infected</h3>
-            <p>Infected are widespread, and you may find them easier to deal with individually. They can be quite a problem in groups, not to mention hoardes.</p>
+            <p>Tier-scaled events, dynamic crash sites, infected hoardes, and keycard missions, with minimal, balanced AI. Get lost in immersive custom scripted events and earn the best loot CYBERIA has to offer.</p>
           </article>
           <article>
             <h3>Groups</h3>
-            <p>Get your squad on comms and band together in our Groups system. Press <kbd>J</kbd> at any time to open the groups menu and invite up to 12 friends.</p>
+            <p>Get your squad on comms and band together in our Groups system. Press <kbd>J</kbd> at any time to open the groups menu and invite up to 4 friends. Verify on our Discord or donate to the server for exclusive perks!</p>
           </article>
           <article>
-            <h3>Quality of life</h3>
-            <p>There are too many minor fixes to mention here. Each one addresses an existing problem, and nothing changes how DayZ fundamentally plays.</p>
+            <h3>Chernarus Island</h3>
+            <p>The once-polar Chernarus has been reimagined as a tropical island, dense and lush with overgrown foliage. The cold is no longer a problem... but the heat is more of a challenge than ever.</p>
           </article>
         </div>
       </div>
+      <a href="#play" class="scroll" aria-label="Next page"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
     </section>
 
     <section id="play" class="page play">

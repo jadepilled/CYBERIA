@@ -1,26 +1,28 @@
-// Wheel paging: each wheel notch or trackpad flick moves one page, and quick repeated
-// inputs queue up instead of being dropped mid-animation. Touch and keyboard scrolling
-// use the CSS scroll snapping in style.css.
+// Wheel paging inside <main>, the page's scroll container: each wheel notch or trackpad flick
+// moves one page, and quick repeated inputs queue up instead of being dropped mid-animation.
+// Touch and keyboard scrolling use the CSS scroll snapping in style.css.
 (() => {
-  const pages = [...document.querySelectorAll(".page")];
+  const scroller = document.querySelector("main");
+  const pages = scroller ? [...scroller.querySelectorAll(".page")] : [];
   if (pages.length < 2) return;
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const GESTURE_GAP = 150;   // ms of quiet that ends a trackpad gesture
   let target = null;         // page index we are animating to, null when settled
   let lastWheel = 0, inGesture = false, settle = 0;
+  const top = () => scroller.scrollTop, height = () => scroller.clientHeight;
 
   const indexAt = () => {
     let i = 0;
-    pages.forEach((p, k) => { if (p.offsetTop <= scrollY + 2) i = k; });
+    pages.forEach((p, k) => { if (p.offsetTop <= top() + 2) i = k; });
     return i;
   };
   const topOf = (i, dir) => {
     const t = pages[i];
-    return dir > 0 ? t.offsetTop : Math.max(t.offsetTop, t.offsetTop + t.offsetHeight - innerHeight);
+    return dir > 0 ? t.offsetTop : Math.max(t.offsetTop, t.offsetTop + t.offsetHeight - height());
   };
   const go = (i, dir) => {
     target = i;
-    scrollTo({ top: topOf(i, dir), behavior: reduced ? "auto" : "smooth" });
+    scroller.scrollTo({ top: topOf(i, dir), behavior: reduced ? "auto" : "smooth" });
   };
   // a mouse wheel notch arrives as one whole-number event of 100 or more (or in line units);
   // trackpads send streams of small, fractional deltas
@@ -36,8 +38,8 @@
     // pages taller than the window scroll normally until their edge
     if (target === null) {
       const bottom = page.offsetTop + page.offsetHeight;
-      if (dir > 0 && scrollY + innerHeight < bottom - 2) return;
-      if (dir < 0 && scrollY > page.offsetTop + 2) return;
+      if (dir > 0 && top() + height() < bottom - 2) return;
+      if (dir < 0 && top() > page.offsetTop + 2) return;
     }
     e.preventDefault();
     let step;
@@ -50,8 +52,16 @@
   }, { passive: false });
 
   // once the scroll settles the target is cleared and the snapped position is the truth again
-  addEventListener("scroll", () => {
+  scroller.addEventListener("scroll", () => {
     clearTimeout(settle);
     settle = setTimeout(() => { target = null; }, 150);
   }, { passive: true });
+
+  // the hash names a page: land on it inside the scroller (the browser only scrolls the window)
+  const jump = () => {
+    const t = location.hash && document.getElementById(location.hash.slice(1));
+    if (t && t.classList.contains("page")) scroller.scrollTo({ top: t.offsetTop, behavior: "auto" });
+  };
+  addEventListener("hashchange", jump);
+  jump();
 })();
